@@ -1,14 +1,17 @@
 from setuptools import setup, find_packages
+from os import path, getenv
 
-# read the contents of your README file
-from os import path
 this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     lines = f.readlines()
 
-# remove images from README
+# Remove images from README
 lines = [x for x in lines if (('.png' not in x) and ('.gif' not in x))]
 long_description = ''.join(lines)
+
+# Pin torch version if specified in the environment variable
+pytorch_version = getenv("PYTORCH_VERSION", "")
+pytorch_dep = f"torch=={pytorch_version}" if pytorch_version else "torch"
 
 setup(
     name="robomimic",
@@ -17,19 +20,19 @@ setup(
     ],
     install_requires=[
         "numpy>=1.13.3",
-        "h5py",
-        "psutil",
-        "tqdm",
-        "termcolor",
-        "tensorboard",
-        "tensorboardX",
-        "imageio",
-        "imageio-ffmpeg",
-        "matplotlib",
-        "egl_probe>=1.0.1",
-        "torch==2.0.1",
-        "torchvision==0.15.2",
-        "diffusers==0.11.1",
+        "h5py>=0.0.0",
+        "psutil>=0.0.0",
+        "tqdm>=0.0.0",
+        "termcolor>=0.0.0",
+        "tensorboard>=0.0.0",
+        "tensorboardX>=0.0.0",
+        "imageio>=0.0.0",
+        "imageio-ffmpeg>=0.0.0",
+        "matplotlib>=0.0.0",
+        "egl_probe>=0.0.1",
+        pytorch_dep,
+        "torchvision>=0.15.2",
+        "diffuser==0.11.1",
         "tianshou==0.4.10",
         "transformers",
     ],
