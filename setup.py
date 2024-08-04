@@ -10,8 +10,8 @@ lines = [x for x in lines if (('.png' not in x) and ('.gif' not in x))]
 long_description = ''.join(lines)
 
 # Pin torch version if specified in the environment variable
-pytorch_version = getenv("PYTORCH_VERSION", "")
-pytorch_dep = f"torch=={pytorch_version}" if pytorch_version else "torch"
+# pytorch_version = getenv("PYTORCH_VERSION", "")
+# pytorch_dep = f"torch=={pytorch_version}" if pytorch_version else "torch"
 
 setup(
     name="robomimic",
@@ -30,8 +30,8 @@ setup(
         "imageio-ffmpeg>=0.0.0",
         "matplotlib>=0.0.0",
         "egl_probe>=0.0.1",
-        pytorch_dep,
-        "torchvision==0.18.1",
+        "torch",
+        "torchvision",
         "diffusers==0.11.1",
         "tianshou==0.4.10",
         "transformers",
